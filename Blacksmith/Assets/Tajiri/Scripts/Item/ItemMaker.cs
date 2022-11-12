@@ -7,6 +7,7 @@ namespace Blacksmith.Item {
         [SerializeField] ItemState itemState;
         [SerializeField] GameObject itemBase;
         [SerializeField] Transform[] positions;
+        bool[] isItemExists = new bool[9];
         GameObject[] itemPool = new GameObject[9];
         readonly float INTERVAL_MIN = 2f;
         readonly float INTERVAL_MAX = 5f;
@@ -23,10 +24,10 @@ namespace Blacksmith.Item {
         /// </summary>
         /// <returns></returns>
         IEnumerator MakeLoop() {
-            var interval = Random.Range(INTERVAL_MIN, INTERVAL_MAX);
+            float interval = Random.Range(INTERVAL_MIN, INTERVAL_MAX);
             yield return new WaitForSeconds(interval);
-            var makePos = positions[Random.Range(0, positions.Length)];
-            var item = GetFreeItem();
+            Transform makePos = GetMakePosition();
+            GameObject item = GetFreeItem();
             item.transform.position = makePos.position;
             item.SetActive(true);
             //var makeIndex = Random.Range(0,スプライトの数=タイプ );
@@ -44,7 +45,15 @@ namespace Blacksmith.Item {
                     return item;
                 }
             }
-            return Instantiate(itemBase, transform);
+            return Instantiate(itemBase, transform);//多分ここまで通らない
+        }
+
+        /// <summary>
+        /// アイテムがまだ置かれていないどこかの地点の位置を取得　未実装　必要そうになれば
+        /// </summary>
+        /// <returns></returns>
+        Transform GetMakePosition() {
+            return positions[Random.Range(0, positions.Length)];
         }
     }
 }
