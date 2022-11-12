@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //private bool isClick = false;
     [SerializeField]
     private Animator anim;
-
-    void Start()
-    {
-        
-    }
-
 
     void Update()
     {

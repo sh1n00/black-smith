@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    //アニメ
+    [SerializeField]
+    private Animator anim;
+    //スコアマネージャー
     [SerializeField]
     private ScoreManager scoreManager;
 
@@ -13,9 +17,10 @@ public class Target : MonoBehaviour
     [SerializeField]
     private int _score = 100;
 
+    //色変え
     [SerializeField]
     private SpriteRenderer sprite;
-
+    //フラッグ
     private bool isCanHit = true;
 
     private void FixedUpdate()
@@ -39,6 +44,7 @@ public class Target : MonoBehaviour
             ChangeIsCanhit(false);
             ColorChange(Color.red);
             ScorePlus(_score);
+            BeHitAnim();
         }
     }
 
@@ -56,5 +62,10 @@ public class Target : MonoBehaviour
     {
         scoreManager.Score += num;
         Debug.Log(scoreManager.Score);
+    }
+    //beHit演出
+    public void BeHitAnim()
+    {
+        anim.SetTrigger("beHit");
     }
 }
