@@ -16,7 +16,6 @@ namespace Blacksmith.Item {
             itemState = stateReference;
             myItem = set;
             transform.parent = null;
-            gameObject.SetActive(true);
         }
 
         public void ItemTake() {
