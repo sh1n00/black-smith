@@ -4,26 +4,67 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    [SerializeField]
+    private float _timer = 0.5f;
+    private float _timerTmp = 0.0f;
+    [SerializeField]
+    private int _score = 100;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    private SpriteRenderer sprite;
+
+    private bool isCanHit = true;
+    //‰¼
+    private int _allScore = 0;
+
+
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    private void ColorChange(Color color)
+    private void FixedUpdate()
     {
-        this.GetComponent<MeshRenderer>().material.color = color;
+        if(!isCanHit)
+        {
+            _timerTmp++;
+            if(_timerTmp >= _timer * 60.0f)
+            {
+                ChangeIsCanhit(true);
+                ColorChange(Color.green);
+                _timerTmp = 0;
+            }
+        }
     }
 
     public void Hit()
     {
-        ColorChange(Color.red);
+        if(isCanHit)
+        {
+            ChangeIsCanhit(false);
+            ColorChange(Color.red);
+            ScorePlus(_score);
+        }
+    }
+
+    private void ChangeIsCanhit(bool flag)
+    {
+        isCanHit = flag;
+    }
+
+    private void ColorChange(Color color)
+    {
+        sprite.material.color = color;
+    }
+
+    private void ScorePlus(int num)
+    {
+        _allScore += num;
+        Debug.Log(_allScore);
     }
 }
