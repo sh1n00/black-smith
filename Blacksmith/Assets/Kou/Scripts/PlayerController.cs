@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //private bool isClick = false;
+    [SerializeField]
+    private Animator anim;
 
     void Start()
     {
-
+        
     }
 
-    
+
     void Update()
     {
         MouseLeftClick();
@@ -24,19 +26,20 @@ public class PlayerController : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             RayDetect();
+            PunchAnim();
         }
     }
-
+    //レイ
     private void RayDetect()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
-            TagCheck(hit,"Sandbag");
+            TagCheck(hit, "Sandbag");
         }
     }
-
+    //レイのタッグをチェック
     private void TagCheck(RaycastHit hit, string tagName)
     {
         if(hit.transform.tag == tagName)
@@ -54,5 +57,11 @@ public class PlayerController : MonoBehaviour
         Vector3 m_MousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, pos.z);
         //マウス座標をワールド座標に変換してオブジェクトに渡す
         transform.position = Camera.main.ScreenToWorldPoint(m_MousePos);
+    }
+
+    //パンチ演出
+    public void PunchAnim()
+    {
+        anim.SetTrigger("punch");
     }
 }
