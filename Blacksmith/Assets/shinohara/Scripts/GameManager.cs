@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private GameObject gameButton;
 
     private TextMeshProUGUI gameStateText;
+    [SerializeField]
+    private TextMeshProUGUI timeText;
 
     private float time = 5;
     private bool endFlag = false;
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
         if (endFlag)
         {
             time -= 0.03666f;
+            timeText.text = "Time: " + (int)time;
         }
     }
 
@@ -55,12 +58,14 @@ public class GameManager : MonoBehaviour
         {
             case gameState.Title:
                 gameStateText.text = "Start";
-                endFlag = true;
                 break;
             case gameState.InGame:
+                endFlag = true;
                 gameButton.SetActive(false);
                 if (time <= 0)
                 {
+                    gameButton.SetActive(true);
+                    gameStateText.text = "Finish";
                     if(endFlag) StartCoroutine(waitCorutine(1f));
                     endFlag = false;
                 }
@@ -80,8 +85,6 @@ public class GameManager : MonoBehaviour
 
     IEnumerator waitCorutine(float waitSecond)
     {
-        gameButton.SetActive(true);
-        gameStateText.text = "GameOver";
         yield return new WaitForSeconds(waitSecond);
         _currentState = gameState.Result;
     }
