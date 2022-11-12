@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    //アニメ
+    [SerializeField]
+    private Animator anim;
+    //スコアマネージャー
+    [SerializeField]
+    private ScoreManager scoreManager;
+
     [SerializeField]
     private float _timer = 0.5f;
     private float _timerTmp = 0.0f;
     [SerializeField]
     private int _score = 100;
 
+    //パーティークル
+    [SerializeField]
+    private GameObject _particlePrefab;
+
+    //色変え
     [SerializeField]
     private SpriteRenderer sprite;
+    [SerializeField]
+    private Color normalColor;
+    [SerializeField]
+    private Color hitColor;
 
+    //フラッグ
     private bool isCanHit = true;
-    //仮
-    private int _allScore = 0;
-
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
 
     private void FixedUpdate()
     {
@@ -36,7 +40,7 @@ public class Target : MonoBehaviour
             if(_timerTmp >= _timer * 60.0f)
             {
                 ChangeIsCanhit(true);
-                ColorChange(Color.green);
+                ColorChange(normalColor);
                 _timerTmp = 0;
             }
         }
@@ -47,8 +51,10 @@ public class Target : MonoBehaviour
         if(isCanHit)
         {
             ChangeIsCanhit(false);
-            ColorChange(Color.red);
+            ColorChange(hitColor);
             ScorePlus(_score);
+            BeHitAnim();
+            HitParticle();
         }
     }
 
@@ -64,7 +70,17 @@ public class Target : MonoBehaviour
 
     private void ScorePlus(int num)
     {
-        _allScore += num;
-        Debug.Log(_allScore);
+        scoreManager.Score += num;
+        Debug.Log(scoreManager.Score);
+    }
+    //beHit演出
+    public void BeHitAnim()
+    {
+        anim.SetTrigger("beHit");
+    }
+
+    private void HitParticle()
+    {
+        Instantiate(_particlePrefab, transform.position, Quaternion.identity);
     }
 }

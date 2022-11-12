@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //private bool isClick = false;
     [SerializeField]
     private Animator anim;
 
-    void Start()
-    {
-        
-    }
-
+    private bool punchFlag = true;
 
     void Update()
     {
@@ -62,6 +57,14 @@ public class PlayerController : MonoBehaviour
     //ÉpÉìÉ`ââèo
     public void PunchAnim()
     {
-        anim.SetTrigger("punch");
+        if(punchFlag)
+        {
+            anim.SetTrigger("punch"); 
+        }
+        else
+        {
+            anim.SetTrigger("punchL");
+        }
+        punchFlag = !punchFlag;
     }
 }
