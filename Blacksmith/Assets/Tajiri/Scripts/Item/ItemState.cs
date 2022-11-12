@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Blacksmith.Item {
     public class ItemState : MonoBehaviour {
-        List<Type> activeItems;
+        List<Type> activeItems = new List<Type>();
 
         public  void RegisterItem(Type register) {
             activeItems.Add(register);
