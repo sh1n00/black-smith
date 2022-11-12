@@ -7,8 +7,16 @@ namespace Blacksmith.Item {
         ItemState itemState;
         Type myItem;
 
-        public void ItemInit(Type set) {
+        /// <summary>
+        /// アイテムの初期化　ここでスプライトも渡すようにする
+        /// </summary>
+        /// <param name="stateReference"></param>
+        /// <param name="set"></param>
+        public void ItemInit(ItemState stateReference,Type set) {
+            itemState = stateReference;
             myItem = set;
+            transform.parent = null;
+            gameObject.SetActive(true);
         }
 
         public void ItemTake() {
