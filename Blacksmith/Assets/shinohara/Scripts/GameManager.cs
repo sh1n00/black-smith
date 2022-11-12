@@ -1,9 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 public class GameManager : MonoBehaviour
 {
+
+    [SerializeField]
+    private GameObject stateObject;
+
+    [SerializeField]
+    public TextMeshProUGUI gameStateText;
+    
     private enum gameState
     {
         Title,
@@ -27,20 +38,31 @@ public class GameManager : MonoBehaviour
                 if (Input.GetMouseButton(0))
                 {
                     Debug.Log("Title 2 InGame");
-                    _currentState = gameState.InGame;
+                    gameStateText.text = "InGame";
                 }
                 break;
             case gameState.InGame:
                 if (Input.GetMouseButton(0))
                 {
-                    Debug.Log("GameOver");
+                    Debug.Log("InGame 2 Result");
+                    gameStateText.text = "Result";
                     _currentState = gameState.Result;
                 }
-
                 break;
             case gameState.Result:
-                
+                SceneManager.LoadScene("Result");
+                break;
 
         }
+    }
+
+    public void OnButtonClickStart()
+    {
+        _currentState = gameState.InGame;
+    }
+    
+    private void OnButtonClickTitle()
+    {
+        _currentState = gameState.Title;
     }
 }
