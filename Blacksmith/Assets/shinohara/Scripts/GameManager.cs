@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,6 +14,9 @@ public class GameManager : MonoBehaviour
     private GameObject gameButton;
 
     private TextMeshProUGUI gameStateText;
+
+    private float time = 5;
+    private bool endFlag = true;
     
     private enum gameState
     {
@@ -26,10 +30,16 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
+        Application.targetFrameRate = 60;
     }
-    
-    
+
     private void Update()
+    {
+        time -= 0.03666f;
+        Debug.Log(time);
+    }
+
+    private void LateUpdate()
     {
         switch (_currentState)
         {
@@ -38,6 +48,12 @@ public class GameManager : MonoBehaviour
                 break;
             case gameState.InGame:
                 gameButton.SetActive(false);
+                if (time <= 0)
+                {
+                    Debug.Log(endFlag);
+                    if(endFlag) StartCoroutine(waitCorutine(1f));
+                    endFlag = false;
+                }
                 break;
             case gameState.Result:
                 SceneManager.LoadScene("Result");
@@ -54,4 +70,13 @@ public class GameManager : MonoBehaviour
     {
         _currentState = gameState.Title;
     }
+
+    IEnumerator waitCorutine(float waitSecond)
+    {
+        gameButton.SetActive(true);
+        gameStateText.text = "GameOver";
+        yield return new WaitForSeconds(waitSecond);
+        _currentState = gameState.Result;
+    }
+    
 }

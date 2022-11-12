@@ -435,7 +435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565c30b08e41d7b4a8275484daca9fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 2140309474}
+  _timer: 0.5
+  _score: 100
+  sprite: {fileID: 0}
 --- !u!1 &537980696
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565c30b08e41d7b4a8275484daca9fb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 2140309474}
+  _timer: 0.5
+  _score: 100
+  sprite: {fileID: 0}
 --- !u!65 &1421395878
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -977,6 +981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 263b4012841d37a488521dcafc684631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!1 &1648715325
 GameObject:
   m_ObjectHideFlags: 0
