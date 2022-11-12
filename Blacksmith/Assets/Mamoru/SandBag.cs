@@ -12,14 +12,15 @@ public class SandBag : MonoBehaviour {
     public bool isInit = false;
     Vector3 savePostion;
     Vector3 targetPosition;
-    Vector3[] randomPosition = { new Vector2(0.0f, 0.0f),
-                                 new Vector2(1.0f, 1.0f),
-                                 new Vector2(-1.0f, 0.0f),
-                                 new Vector2(0.0f, -1.0f),
-                                 new Vector2(1.0f, 0.0f),
-                                 new Vector2(0.0f, 1.0f),
-                                 new Vector2(1.0f, -1.0f),
-                                 new Vector2(-1.0f, 1.0f)}; // 移動先座標の配列
+    //Vector3[] randomPosition = { new Vector2(0.0f, 0.0f),
+    //                             new Vector2(1.0f, 1.0f),
+    //                             new Vector2(-1.0f, 0.0f),
+    //                             new Vector2(0.0f, -1.0f),
+    //                             new Vector2(1.0f, 0.0f),
+    //                             new Vector2(0.0f, 1.0f),
+    //                             new Vector2(1.0f, -1.0f),
+    //                             new Vector2(-1.0f, 1.0f)}; // 移動先座標の配列
+    [SerializeField] Transform[] positions;
 
     // 初期化処理
     void Start() {
@@ -44,7 +45,7 @@ public class SandBag : MonoBehaviour {
         {
             savePostion = transform.position;
             int random = Random.Range(0, 8);
-            targetPosition = randomPosition[random] * multiPosition;
+            targetPosition = positions[random].position;
             isInit = true;
         }
         float distancePosition = Vector3.Distance(targetPosition, savePostion);
