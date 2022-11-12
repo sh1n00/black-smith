@@ -10,13 +10,11 @@ public class GameManager : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject stateObject;
-
-    [SerializeField]
-    public TextMeshProUGUI gameStateText;
+    private TextMeshProUGUI gameStateText;
     
     private enum gameState
     {
+        Stay,
         Title,
         InGame,
         Result
@@ -27,32 +25,27 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _currentState = gameState.Title;
+        _currentState = gameState.Stay;
     }
     
     private void Update()
     {
         switch (_currentState)
         {
+            case gameState.Stay:
+                break;
             case gameState.Title:
-                if (Input.GetMouseButton(0))
-                {
-                    Debug.Log("Title 2 InGame");
-                    gameStateText.text = "InGame";
-                }
+                Debug.Log("Title 2 InGame");
+                gameStateText.text = "InGame";
                 break;
             case gameState.InGame:
-                if (Input.GetMouseButton(0))
-                {
-                    Debug.Log("InGame 2 Result");
-                    gameStateText.text = "Result";
-                    _currentState = gameState.Result;
-                }
+                Debug.Log("InGame 2 Result");
+                gameStateText.text = "Result";
+                _currentState = gameState.Result;
                 break;
             case gameState.Result:
                 SceneManager.LoadScene("Result");
                 break;
-
         }
     }
 
@@ -61,8 +54,8 @@ public class GameManager : MonoBehaviour
         _currentState = gameState.InGame;
     }
     
-    private void OnButtonClickTitle()
+    public void OnButtonClickTitle()
     {
-        _currentState = gameState.Title;
+        _currentState = gameState.Stay;
     }
 }
