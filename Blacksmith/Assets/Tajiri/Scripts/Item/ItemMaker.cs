@@ -31,7 +31,7 @@ namespace Blacksmith.Item {
             item.transform.position = makePos.position;
             item.SetActive(true);
             //var makeIndex = Random.Range(0,スプライトの数=タイプ );
-            item.GetComponent<ItemBehaviour>().ItemInit(itemState, Type.TEST);
+            item.GetComponent<ItemBehaviour>().ItemInit(itemState, Type.STAN);
             StartCoroutine(MakeLoop());
         }
 
