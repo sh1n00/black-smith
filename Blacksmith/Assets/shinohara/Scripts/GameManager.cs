@@ -9,34 +9,49 @@ using UnityEngine.UI;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
-    
-    [SerializeField]
+
+    private GameObject _rootCanvas;
+
+    private static GameObject rootCanvas;
     private GameObject gameButton;
 
     private TextMeshProUGUI gameStateText;
 
     private float time = 5;
-    private bool endFlag = true;
+    private bool endFlag = false;
     
     private enum gameState
     {
         Title,
         InGame,
-        Result
+        Result,
+        GameOver
     }
 
-    private gameState _currentState = gameState.Title;
+    private static gameState _currentState = gameState.Title;
 
+    private void Awake()
+    {
+        _rootCanvas = GameObject.Find("Canvas");
+        rootCanvas = _rootCanvas;
+        //gameButton = rootCanvas.GetComponentInChildren<GameObject>();
+        gameButton = rootCanvas.transform.GetChild(0).gameObject;
+        gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(rootCanvas);
+    }
+    
     private void Start()
     {
-        gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
         Application.targetFrameRate = 60;
     }
 
     private void Update()
     {
-        time -= 0.03666f;
-        Debug.Log(time);
+        if (endFlag)
+        {
+            time -= 0.03666f;
+        }
     }
 
     private void LateUpdate()
@@ -45,18 +60,23 @@ public class GameManager : MonoBehaviour
         {
             case gameState.Title:
                 gameStateText.text = "Start";
+                endFlag = true;
                 break;
             case gameState.InGame:
                 gameButton.SetActive(false);
                 if (time <= 0)
                 {
-                    Debug.Log(endFlag);
                     if(endFlag) StartCoroutine(waitCorutine(1f));
                     endFlag = false;
                 }
                 break;
             case gameState.Result:
                 SceneManager.LoadScene("Result");
+                _currentState = gameState.GameOver;
+                break;
+            case gameState.GameOver:
+                gameButton.SetActive(true);
+                gameStateText.text = "Restart";
                 break;
         }
     }
@@ -69,6 +89,7 @@ public class GameManager : MonoBehaviour
     public void OnButtonClickTitle()
     {
         _currentState = gameState.Title;
+        SceneManager.LoadScene("MainScene");
     }
 
     IEnumerator waitCorutine(float waitSecond)
