@@ -8,40 +8,36 @@ using UnityEngine.UI;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
-
+    
     [SerializeField]
+    private GameObject gameButton;
+
     private TextMeshProUGUI gameStateText;
     
     private enum gameState
     {
-        Stay,
         Title,
         InGame,
         Result
     }
 
-    private gameState _currentState;
-    
-    // Start is called before the first frame update
-    void Start()
+    private gameState _currentState = gameState.Title;
+
+    private void Start()
     {
-        _currentState = gameState.Stay;
+        gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
     }
+    
     
     private void Update()
     {
         switch (_currentState)
         {
-            case gameState.Stay:
-                break;
             case gameState.Title:
-                Debug.Log("Title 2 InGame");
-                gameStateText.text = "InGame";
+                gameStateText.text = "Start";
                 break;
             case gameState.InGame:
-                Debug.Log("InGame 2 Result");
-                gameStateText.text = "Result";
-                _currentState = gameState.Result;
+                gameButton.SetActive(false);
                 break;
             case gameState.Result:
                 SceneManager.LoadScene("Result");
@@ -56,6 +52,6 @@ public class GameManager : MonoBehaviour
     
     public void OnButtonClickTitle()
     {
-        _currentState = gameState.Stay;
+        _currentState = gameState.Title;
     }
 }
