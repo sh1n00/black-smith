@@ -4,42 +4,40 @@ using UnityEngine;
 
 public class SandBag : MonoBehaviour
 {
-    int score = 0; // スコア
-    float time; // タイムインターバル
-    const float initTime = 3.0f; // タイム初期値
-    const float randomRangeMin = -15.0f; // ランダム移動最小値
-    const float randomRangeMax = 15.0f; // ランダム移動最大値
+    float time; // タイム
+    public const float initTime = 3.0f; // タイム初期値
+    public const float multiPosition = 10.0f; // 移動先の調整用変数
+    Vector2[] randomPosition = { new Vector2(0.0f, 0.0f),
+                                 new Vector2(1.0f, 1.0f),
+                                 new Vector2(-1.0f, 0.0f),
+                                 new Vector2(0.0f, -1.0f),
+                                 new Vector2(1.0f, 0.0f),
+                                 new Vector2(0.0f, 1.0f),
+                                 new Vector2(1.0f, -1.0f),
+                                 new Vector2(-1.0f, 1.0f)}; // 移動先座標の配列
 
-    // Start is called before the first frame update
+    // 初期化処理
     void Start()
     {
         time = initTime; // タイム初期化
     }
 
-    // Update is called once per frame
+    // 更新処理
     void Update()
     {
-        ScoreUp(); // スコアアップ
         RandomMove(); // ランダム移動
     }
 
-    void ScoreUp()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            this.score++;
-            Debug.Log(this.score);
-        }
-    }
-
+    // ランダム移動処理
     void RandomMove()
     {
-        time -= Time.deltaTime;
+        time -= Time.deltaTime; // タイム経過
 
         if (time <= 0)
         {
-            float randomMoveX = Random.Range(randomRangeMin, randomRangeMax);
-            transform.position = new Vector2(randomMoveX, 0.0f);
+            int positionIndex = Random.Range(0, 8); // 移動先座標の要素
+            transform.position = randomPosition[positionIndex] * multiPosition; // ランダム移動
+
             time = initTime; // タイム初期化
         }
     }
