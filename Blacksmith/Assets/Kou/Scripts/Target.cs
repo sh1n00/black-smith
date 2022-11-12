@@ -17,9 +17,18 @@ public class Target : MonoBehaviour
     [SerializeField]
     private int _score = 100;
 
+    //パーティークル
+    [SerializeField]
+    private GameObject _particlePrefab;
+
     //色変え
     [SerializeField]
     private SpriteRenderer sprite;
+    [SerializeField]
+    private Color normalColor;
+    [SerializeField]
+    private Color hitColor;
+
     //フラッグ
     private bool isCanHit = true;
 
@@ -31,7 +40,7 @@ public class Target : MonoBehaviour
             if(_timerTmp >= _timer * 60.0f)
             {
                 ChangeIsCanhit(true);
-                ColorChange(Color.green);
+                ColorChange(normalColor);
                 _timerTmp = 0;
             }
         }
@@ -42,9 +51,10 @@ public class Target : MonoBehaviour
         if(isCanHit)
         {
             ChangeIsCanhit(false);
-            ColorChange(Color.red);
+            ColorChange(hitColor);
             ScorePlus(_score);
             BeHitAnim();
+            HitParticle();
         }
     }
 
@@ -67,5 +77,10 @@ public class Target : MonoBehaviour
     public void BeHitAnim()
     {
         anim.SetTrigger("beHit");
+    }
+
+    private void HitParticle()
+    {
+        Instantiate(_particlePrefab, transform.position, Quaternion.identity);
     }
 }
