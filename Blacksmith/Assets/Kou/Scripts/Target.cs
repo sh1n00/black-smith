@@ -5,6 +5,9 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     [SerializeField]
+    private ScoreManager scoreManager;
+
+    [SerializeField]
     private float _timer = 0.5f;
     private float _timerTmp = 0.0f;
     [SerializeField]
@@ -14,19 +17,6 @@ public class Target : MonoBehaviour
     private SpriteRenderer sprite;
 
     private bool isCanHit = true;
-    //‰¼
-    private int _allScore = 0;
-
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
 
     private void FixedUpdate()
     {
@@ -64,7 +54,7 @@ public class Target : MonoBehaviour
 
     private void ScorePlus(int num)
     {
-        _allScore += num;
-        Debug.Log(_allScore);
+        scoreManager.Score += num;
+        Debug.Log(scoreManager.Score);
     }
 }
