@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,25 @@ public class PlayerController : MonoBehaviour
 
     private bool punchFlag = true;
 
+    [SerializeField]
+    private AudioClip punch1;
+    [SerializeField]
+    private AudioClip punch2;
+
+    
+    [SerializeField]
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         MouseLeftClick();
         CursorObjectMovement();
+        audioSource.PlayOneShot(punch1);
     }
 
     //マウスクリック

@@ -9,11 +9,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
-    private GameObject _rootCanvas;
-
     private GameObject rootCanvas;
+    [SerializeField]
     private GameObject gameButton;
+
+    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject Target;
 
     private TextMeshProUGUI gameStateText;
     [SerializeField]
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     private float time = 5;
     private bool endFlag = false;
+    
+    private const float consumeTime = 0.01666f;
     
     private enum gameState
     {
@@ -38,16 +41,16 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        rootCanvas = GameObject.Find("Canvas");
-        gameButton = rootCanvas.transform.GetChild(0).gameObject;
         gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
+        Target.SetActive(false);
+        timeText.text = "";
     }
 
     private void Update()
     {
         if (endFlag)
         {
-            time -= 0.03666f;
+            time -= consumeTime;
             timeText.text = "Time: " + (int)time;
         }
     }
@@ -60,12 +63,15 @@ public class GameManager : MonoBehaviour
                 gameStateText.text = "Start";
                 break;
             case gameState.InGame:
+                Target.SetActive(true);
                 endFlag = true;
                 gameButton.SetActive(false);
                 if (time <= 0)
                 {
                     gameButton.SetActive(true);
                     gameStateText.text = "Finish";
+                    Player.SetActive(false);
+                    Target.SetActive(false);
                     if(endFlag) StartCoroutine(waitCorutine(1f));
                     endFlag = false;
                 }
