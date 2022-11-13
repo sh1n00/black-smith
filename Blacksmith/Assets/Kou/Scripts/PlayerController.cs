@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         {
             RayDetect();
             PunchAnim();
-            Random.Range(0, soundManager.getLength());
+            // Random.Range(0, soundManager.getLength());
             soundManager.punchPlay(1);
         }
     }
