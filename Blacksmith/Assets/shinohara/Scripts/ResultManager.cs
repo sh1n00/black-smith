@@ -43,7 +43,6 @@ public class ResultManager : MonoBehaviour
         scoreManagerObject = GameObject.Find("ScoreManager");
         scoreManager = scoreManagerObject.GetComponent<ScoreManager>();
     }
-
     // Start is called before the first frame update
     void Start()
     {
