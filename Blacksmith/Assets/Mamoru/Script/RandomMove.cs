@@ -36,7 +36,6 @@ public class RandomMove : MonoBehaviour
             Vector2 targetPosition = randomPosition[random] * multiPosition;
             transform.position = targetPosition;
             timer = Random.Range(initTimerMin, initTimerMax);
-            Debug.Log("ƒŠƒZƒbƒgŽžŠÔ" + timer);
         }
     }
 }

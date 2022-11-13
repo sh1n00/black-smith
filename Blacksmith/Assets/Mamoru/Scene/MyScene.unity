@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initTimerMin: 1
   initTimerMax: 4
-  multiPosition: 10
+  multiPosition: 5
 --- !u!4 &855046995
 Transform:
   m_ObjectHideFlags: 0
@@ -286,6 +286,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8984068348679313341, guid: d35f0f565461c53428265558d12c8df1, type: 3}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984068348679313341, guid: d35f0f565461c53428265558d12c8df1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984068348679313341, guid: d35f0f565461c53428265558d12c8df1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8984068348679313341, guid: d35f0f565461c53428265558d12c8df1, type: 3}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8984068348679313341, guid: d35f0f565461c53428265558d12c8df1, type: 3}
