@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 public class ResultManager : MonoBehaviour
 {
-    public int Score { get; set; } = 3800;
     private int _num;
 
     [SerializeField]
     private Animator _anim;
+
+    private GameObject scoreManagerObject;
+    private ScoreManager scoreManager;
 
     [SerializeField]
     private GameObject _camera;
@@ -37,8 +40,11 @@ public class ResultManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scoreManagerObject = GameObject.Find("ScoreManager");
+        scoreManager = scoreManagerObject.GetComponent<ScoreManager>();
+        Debug.Log(scoreManager.Score);
         _enemySpawnPosFirst = _enemySpawnPos.transform.position;
-        _num = Score / 100;
+        _num = scoreManager.Score / 100;
         _enemyNumText.text = _num.ToString();
         _anim = this.gameObject.GetComponent<Animator>();
     }

@@ -23,6 +23,8 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     private AudioSource audioSourcePunch;
+
+    [SerializeField] private AudioClip itemGet;
     
     public void bgmPlay()
     {
@@ -82,5 +84,9 @@ public class SoundManager : MonoBehaviour
         {
             audioSourceBGM.volume -= decreaseRate;
         }
+    }
+
+    public void ItemGetPlay() {
+        audioSourcePunch.PlayOneShot(itemGet);
     }
 }

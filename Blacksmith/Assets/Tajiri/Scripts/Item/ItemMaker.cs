@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Blacksmith.Item {
     public class ItemMaker : MonoBehaviour {
         [SerializeField] ItemState itemState;
+        [SerializeField] SoundManager soundManager;
         [SerializeField] GameObject itemBase;
         [SerializeField] Transform[] positions;
         bool[] isItemExists = new bool[9];
@@ -31,7 +32,7 @@ namespace Blacksmith.Item {
             item.transform.position = makePos.position;
             item.SetActive(true);
             //var makeIndex = Random.Range(0,スプライトの数=タイプ );
-            item.GetComponent<ItemBehaviour>().ItemInit(itemState, Type.STAN);
+            item.GetComponent<ItemBehaviour>().ItemInit(itemState,soundManager, Type.STAN);
             StartCoroutine(MakeLoop());
         }
 
