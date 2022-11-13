@@ -9,25 +9,31 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private GameObject rootCanvas;
     [SerializeField]
     private GameObject gameButton;
 
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject Target;
 
-    private TextMeshProUGUI gameStateText;
     [SerializeField]
     private TextMeshProUGUI timeText;
+    [SerializeField]
+    private TextMeshProUGUI displayText;
+    private TextMeshProUGUI gameStateText;
 
-    [SerializeField] private TextMeshProUGUI displayText;
+    [SerializeField]
+    private AudioSource audioSource;
 
-    private float time = 5;
-    private bool endFlag = true;
-    private bool startFlag = false;
+    [SerializeField] private AudioClip bgm;
+
+    private bool isEnded = true;
+    private bool isStartedCountDown = false;
+    private bool isStartedTimer = false;
+    
+    private float timeLimited = 5;
     
     private const float consumeTime = 0.01666f;
-    
+
     private enum gameState
     {
         Title,
@@ -40,6 +46,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Awake()
@@ -51,10 +58,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (startFlag)
+        if (isStartedTimer)
         {
-            time -= consumeTime;
-            timeText.text = "Time: " + (int)time;
+            timeLimited -= consumeTime;
+            timeText.text = "Time: " + (int)timeLimited;
         }
     }
 
@@ -70,15 +77,13 @@ public class GameManager : MonoBehaviour
             case gameState.InGame:
                 Target.SetActive(true);
                 gameButton.SetActive(false);
-                // if(!startFlag) StartCoroutine(countDown());
-                startFlag = true;
-                if (time <= 0)
+                if(isStartedCountDown) StartCoroutine(countDown());
+                if (timeLimited <= 0)
                 {
                     displayText.text = "Finish";
                     Player.SetActive(false);
                     Target.SetActive(false);
-                    if(endFlag) StartCoroutine(waitCorutine(1f));
-                    endFlag = false;
+                    if(isEnded) StartCoroutine(waitCorutine(1f));
                 }
                 break;
             case gameState.Result:
@@ -91,17 +96,20 @@ public class GameManager : MonoBehaviour
     public void OnButtonClickStart()
     {
         _currentState = gameState.InGame;
+        isStartedCountDown = true;
     }
-    
 
     IEnumerator waitCorutine(float waitSecond)
     {
+        isEnded = false;
         yield return new WaitForSeconds(waitSecond);
         _currentState = gameState.Result;
     }
 
     IEnumerator countDown()
     {
+        timeText.text = "Time: " + timeLimited;
+        isStartedCountDown = false;
         displayText.text = "3";
         yield return new WaitForSeconds(1.0f);
         displayText.text = "2";
@@ -111,6 +119,8 @@ public class GameManager : MonoBehaviour
         displayText.text = "Go";
         yield return new WaitForSeconds(1.0f);
         displayText.text = "";
+        isStartedTimer = true;
+        audioSource.PlayOneShot(bgm);
     }
 
 }
