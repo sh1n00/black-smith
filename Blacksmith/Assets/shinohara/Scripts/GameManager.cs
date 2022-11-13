@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
+    [SerializeField] private ScoreManager scoreManager;
     [SerializeField] private SoundManager soundManager;
     
     [SerializeField] private GameObject Player;
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
         gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
         Target.SetActive(false);
         timeText.text = "";
+        DontDestroyOnLoad(scoreManager);
     }
 
     private void Update()
