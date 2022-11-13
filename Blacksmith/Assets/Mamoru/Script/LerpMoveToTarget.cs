@@ -39,8 +39,6 @@ public class LerpMoveToTarget : MonoBehaviour
 
         timerMin = randomMoveScript.initTimerMin;
         timerMax = randomMoveScript.initTimerMax;
-        score = scoreManagerScript.Score;
-        isStartes = gameManagerScript.isStartedTimer;
 
         // 最初は非表示
         this.gameObject.SetActive(false); 
@@ -49,6 +47,9 @@ public class LerpMoveToTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isStartes = gameManagerScript.isStartedTimer;
+        score = scoreManagerScript.Score;
+
         if (isStartes)
         {
             // ゲームスタートで表示
@@ -62,6 +63,7 @@ public class LerpMoveToTarget : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, targetObject.transform.position, speed);
             }
         }
+        Debug.Log(isStartes);
     }
 
     public void ItemEffect(Blacksmith.Item.Type type, bool flag)
