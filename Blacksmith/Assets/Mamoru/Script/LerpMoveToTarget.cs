@@ -15,8 +15,8 @@ public class LerpMoveToTarget : MonoBehaviour
     GameObject scoreManager; // スコアマネージャーを取得
     ScoreManager scoreManagerScript;
     [SerializeField] float speed = 0.1f; // スピード
-    State state = State.Normal;
-    //int score;
+    State state = State.Normal; // 状態を取得
+    bool isStan; // スタンしたかどうか
 
     void Start()
     {
@@ -29,24 +29,32 @@ public class LerpMoveToTarget : MonoBehaviour
     void Update()
     {
         int score = scoreManagerScript.Score;
-        if (Input.GetMouseButtonDown(0)) score++;
-        Debug.Log(score);
 
-        switch(score)
+        if (!isStan)
         {
-            case 10:
-                state = State.OneGearUp;
-                break;
-            case 20:
-                state = State.TwoGearUp;
-                break;
+            switch (score)
+            {
+                case 10:
+                    state = State.OneGearUp;
+                    break;
+                case 20:
+                    state = State.TwoGearUp;
+                    break;
+            }
+
+            if (state == State.Normal) speed = 0.1f;
+            else if (state == State.OneGearUp) speed = 0.5f;
+            else if (state == State.TwoGearUp) speed = 1.0f;
+
+            // 移動
+            transform.position = Vector2.MoveTowards(transform.position, targetObject.transform.position, speed);
         }
-
-        if (state == State.Normal) speed = 0.1f;
-        else if (state == State.OneGearUp) speed = 0.5f;
-        else if (state == State.TwoGearUp) speed = 1.0f;
-
-        // 移動
-        transform.position = Vector2.MoveTowards(transform.position, targetObject.transform.position, speed);
     }
+
+    public void ItemEffect(Blacksmith.Item.Type type, bool flag)
+    {
+        //typeはまだ無視　スタンのみ
+        isStan = flag;
+    }
+
 }
