@@ -25,6 +25,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI displayText;
     private TextMeshProUGUI gameStateText;
+
+    [SerializeField] GameObject title;
+    [SerializeField] Image count;
+    [SerializeField] Sprite[] threeCounts;
+    [SerializeField] Sprite goSprite;
     
 
     private bool isEnded = true;
@@ -99,6 +104,7 @@ public class GameManager : MonoBehaviour
 
     public void OnButtonClickStart()
     {
+        title.SetActive(false);
         _currentState = gameState.InGame;
         isStartedCountDown = true;
     }
@@ -126,7 +132,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         displayText.text = "Go";
         soundManager.startGongPlay();
+        count.gameObject.SetActive(true);
+        count.sprite = threeCounts[0];
         yield return new WaitForSeconds(1.0f);
+        count.sprite = threeCounts[1];
+        yield return new WaitForSeconds(1.0f);
+        count.sprite = threeCounts[2];
+        yield return new WaitForSeconds(1.0f);
+        count.sprite = goSprite;
+        yield return new WaitForSeconds(1.0f);
+        count.gameObject.SetActive(false);
         displayText.text = "";
         isStartedTimer = true;
         soundManager.bgmPlay();
