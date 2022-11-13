@@ -42,12 +42,13 @@ public class LerpMoveToTarget : MonoBehaviour
                     break;
             }
 
-            if (state == State.Normal) speed = 0.1f;
+            if (state == State.Normal) speed = 1f;
             else if (state == State.OneGearUp) speed = 0.5f;
             else if (state == State.TwoGearUp) speed = 1.0f;
 
             // ˆÚ“®
-            transform.position = Vector2.MoveTowards(transform.position, targetObject.transform.position, speed);
+            //transform.position = Vector2.MoveTowards(transform.position, targetObject.transform.position, speed);
+            transform.position = targetObject.transform.position;
         }
     }
 

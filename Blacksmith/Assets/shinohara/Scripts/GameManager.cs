@@ -29,8 +29,7 @@ public class GameManager : MonoBehaviour
     private bool isStartedCountDown = false;
     private bool isStartedTimer = false;
     
-    [SerializeField]
-    private float timeLimited = 5;
+    private float timeLimited = 30;
     
     private const float consumeTime = 0.01666f;
 
@@ -80,13 +79,9 @@ public class GameManager : MonoBehaviour
                 if (timeLimited <= 0)
                 {
                     displayText.text = "Finish";
-                    isStartedTimer = false;
                     Player.SetActive(false);
                     Target.SetActive(false);
-                    if (isEnded)
-                    {
-                        StartCoroutine(waitCorutine(5f));
-                    }
+                    if(isEnded) StartCoroutine(waitCorutine(1f));
                 }
                 break;
             case gameState.Result:
@@ -109,25 +104,22 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(waitSecond);
         _currentState = gameState.Result;
     }
-    
+
     IEnumerator countDown()
     {
         timeText.text = "Time: " + timeLimited;
         isStartedCountDown = false;
         displayText.text = "3";
-        soundManager.coundDownPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "2";
-        soundManager.coundDownPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "1";
-        soundManager.coundDownPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "Go";
-        soundManager.startGongPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "";
         isStartedTimer = true;
+        soundManager.startGongPlay();
         soundManager.bgmPlay();
     }
 
