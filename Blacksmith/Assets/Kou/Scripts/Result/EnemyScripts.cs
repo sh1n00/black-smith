@@ -29,7 +29,6 @@ public class EnemyScripts : MonoBehaviour
         {
             if(_thisPos.x <= _cameraPos.x)
             {
-                Debug.Log("Smash");
                 int num = Random.Range(1, 6);
                 _anim.SetInteger("SmashType",num);
                 Invoke("Destroy", 0.8f);

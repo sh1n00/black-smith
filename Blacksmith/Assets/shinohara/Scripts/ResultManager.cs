@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class ResultManager : MonoBehaviour
 {
-    public int Score { get; set; } = 5000;
+    public int Score { get; set; } = 3800;
     private int _num;
 
     [SerializeField]
@@ -60,9 +60,20 @@ public class ResultManager : MonoBehaviour
                 TimeScaleSetting(0.1f);
                 AnimMiddleToEnd();
                 StartCoroutine(waitCorutine(0.21f));
-                _isCameraMove = false;
+                ChangeCameraMove(1);
             }
         }     
+
+        if(_isCameraBack)
+        {
+            _camera.transform.position += new Vector3(-0.2f, 0, 0);
+            if(_camera.transform.position.x <= 0.0f)
+            {
+                _camera.transform.position = new Vector3(0, 0, -10);
+                AnimMiddleToEnd();
+                ChangeCameraBack(1);
+            }
+        }
     }
 
     public void AnimSpawnEnemy()
@@ -84,6 +95,28 @@ public class ResultManager : MonoBehaviour
         {
             _isCameraMove = false;
         }
+    }
+
+    public void ChangeCameraBack(int num)
+    {
+        if(num == 0)
+        {
+            _isCameraBack = true;
+        }
+        else
+        {
+            _isCameraBack = false;
+        }
+    }
+
+    public void CameraPosX(float num)
+    {
+        CameraPosSetting(new Vector3(num, 0, -10));
+    }
+
+    public void CameraPosSetting(Vector3 pos)
+    {
+        _camera.transform.position = pos;
     }
 
     public void AnimMiddleToEnd()
