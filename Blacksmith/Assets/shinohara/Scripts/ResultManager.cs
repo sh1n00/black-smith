@@ -37,10 +37,6 @@ public class ResultManager : MonoBehaviour
     [SerializeField]
     private Text _enemyNumText;
 
-    //ƒTƒEƒ“ƒh
-    [SerializeField] private List<AudioClip> resultSounds;
-    AudioSource audioSource;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +47,6 @@ public class ResultManager : MonoBehaviour
         _num = scoreManager.Score / 100;
         _enemyNumText.text = _num.ToString();
         _anim = this.gameObject.GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

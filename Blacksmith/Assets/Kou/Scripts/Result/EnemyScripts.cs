@@ -39,6 +39,7 @@ public class EnemyScripts : MonoBehaviour
             if(_thisPos.x <= _cameraPos.x)
             {
                 Instantiate(_enemyParticle, transform.position, Quaternion.identity);
+                SoundPlay();
                 int num = Random.Range(1, 6);
                 _anim.SetInteger("SmashType",num);
                 Invoke("Destroy", 0.8f);
@@ -49,7 +50,8 @@ public class EnemyScripts : MonoBehaviour
 
     public void SoundPlay()
     {
-        //audioSource.PlayOneShot(impact, 0.7F);
+        int num = Random.Range(0, 4);
+        audioSource.PlayOneShot(beHitSounds[num], 0.3F);
     }
 
     void Destroy()
