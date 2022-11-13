@@ -2057,7 +2057,7 @@ GameObject:
   - component: {fileID: 1911608715}
   - component: {fileID: 1911608714}
   m_Layer: 0
-  m_Name: RandomMoveObject
+  m_Name: RandomMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
