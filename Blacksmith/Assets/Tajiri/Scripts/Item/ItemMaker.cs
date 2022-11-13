@@ -10,8 +10,8 @@ namespace Blacksmith.Item {
         [SerializeField] Transform[] positions;
         bool[] isItemExists = new bool[9];
         GameObject[] itemPool = new GameObject[9];
-        readonly float INTERVAL_MIN = 5f;
-        readonly float INTERVAL_MAX = 10f;
+        [SerializeField] float INTERVAL_MIN;
+        [SerializeField] float INTERVAL_MAX;
 
         private void Start() {
             for (int i = 0; i < itemPool.Length; i++) {
