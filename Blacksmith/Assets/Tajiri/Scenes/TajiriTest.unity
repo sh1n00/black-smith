@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpMoveToTarget: {fileID: 0}
+  stanTime: 3
 --- !u!4 &472931431
 Transform:
   m_ObjectHideFlags: 0
@@ -260,6 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemState: {fileID: 472931430}
+  soundManager: {fileID: 0}
   itemBase: {fileID: 4275570488992750671, guid: d814ed3d655e7c2429e1d4785b48f311, type: 3}
   positions:
   - {fileID: 467059755}
