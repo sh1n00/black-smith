@@ -53,7 +53,7 @@ public class Target : MonoBehaviour
         {
             ChangeIsCanhit(false);
             ColorChange(hitColor);
-            ScorePlus(_score);
+            scoreManager.ScorePlus(_score);
             BeHitAnim();
             HitParticle();
         }
@@ -68,12 +68,7 @@ public class Target : MonoBehaviour
     {
         sprite.material.color = color;
     }
-
-    private void ScorePlus(int num)
-    {
-        scoreManager.Score += num;
-        Debug.Log(scoreManager.Score);
-    }
+    
     //beHitââèow
     public void BeHitAnim()
     {
