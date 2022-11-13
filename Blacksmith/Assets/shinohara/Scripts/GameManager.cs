@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     private bool isEnded = true;
     private bool isStartedCountDown = false;
-    private bool isStartedTimer = false;
+    public bool isStartedTimer = false;
     
     private float timeLimited = 30;
     
