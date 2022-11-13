@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
         {
             RayDetect();
             PunchAnim();
+            Random.Range(0, soundManager.getLength());
             soundManager.punchPlay(1);
         }
     }

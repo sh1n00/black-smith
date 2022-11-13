@@ -38,5 +38,10 @@ public class SoundManager : MonoBehaviour
     {
         audioSource.PlayOneShot(punchSounds[punchIndex]);
     }
+
+    public int getLength()
+    {
+        return punchSounds.Count;
+    }
     
 }
