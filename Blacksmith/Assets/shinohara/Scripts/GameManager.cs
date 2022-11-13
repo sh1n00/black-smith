@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     private bool isStartedCountDown = false;
     public bool isStartedTimer = false;
     
-    private float timeLimited = 30;
+    private float timeLimited = 5;
     
     private const float consumeTime = 0.01666f;
 
@@ -47,16 +47,17 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
+        scoreManager.ResetScore();
+        DontDestroyOnLoad(scoreManager);
     }
 
     private void Awake()
     {
-        gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
         scoreManagerObject = GameObject.Find("ScoreManager");
         scoreManager = scoreManagerObject.GetComponent<ScoreManager>();
+        gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
         Target.SetActive(false);
         timeText.text = "";
-        DontDestroyOnLoad(scoreManager);
     }
 
     private void Update()
@@ -115,16 +116,19 @@ public class GameManager : MonoBehaviour
         timeText.text = "Time: " + timeLimited;
         isStartedCountDown = false;
         displayText.text = "3";
+        soundManager.coundDownPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "2";
+        soundManager.coundDownPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "1";
+        soundManager.coundDownPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "Go";
+        soundManager.startGongPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "";
         isStartedTimer = true;
-        soundManager.startGongPlay();
         soundManager.bgmPlay();
     }
 
