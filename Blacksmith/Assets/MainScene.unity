@@ -147,11 +147,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 177107682}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 93.30994, y: 338.0828, z: -0.047182236}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2140309475}
   - {fileID: 1783141668}
   - {fileID: 1468499000}
   m_Father: {fileID: 0}
@@ -1512,7 +1511,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 177107683}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1468499001
 MonoBehaviour:
@@ -1550,7 +1549,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1884,12 +1883,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20589c75da94a7340b27a4f12f6b7d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreManager: {fileID: 2140309474}
   soundManager: {fileID: 1468499001}
   Player: {fileID: 897058802}
   Target: {fileID: 1058915238}
   gameButton: {fileID: 315238459}
   timeText: {fileID: 539716161}
   displayText: {fileID: 1051883776}
+  timeLimited: 5
 --- !u!4 &1783141668
 Transform:
   m_ObjectHideFlags: 0
@@ -1903,7 +1904,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 177107683}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1791890462
 GameObject:
@@ -2293,11 +2294,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140309473}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 177107683}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
