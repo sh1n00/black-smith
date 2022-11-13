@@ -153,7 +153,6 @@ Transform:
   m_Children:
   - {fileID: 2140309475}
   - {fileID: 1783141668}
-  - {fileID: 1468499000}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1492,6 +1491,7 @@ GameObject:
   - component: {fileID: 1468499000}
   - component: {fileID: 1468499001}
   - component: {fileID: 1468499002}
+  - component: {fileID: 1468499003}
   m_Layer: 0
   m_Name: SoundManger
   m_TagString: Untagged
@@ -1506,13 +1506,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468498999}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 93.30994, y: 338.0828, z: -0.047182236}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 177107683}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1468499001
 MonoBehaviour:
@@ -1530,7 +1530,7 @@ MonoBehaviour:
   bgmVolume: 0.3
   startGong: {fileID: 8300000, guid: 5a1207fff0bf9664b86e9823f09f32e4, type: 3}
   endGong: {fileID: 8300000, guid: 70f7a395f153f264db40330412a3671a, type: 3}
-  countDown: {fileID: 0}
+  countDown: {fileID: 8300000, guid: 48adcc736f8521e45a106793fd19125c, type: 3}
   punchSounds:
   - {fileID: 8300000, guid: d3aac56e8d4853e47a19014f8e9bb42f, type: 3}
   - {fileID: 8300000, guid: 52f111f9d4235be4e9116a85ff2b02c0, type: 3}
@@ -1540,8 +1540,8 @@ MonoBehaviour:
   beHitSounds:
   - {fileID: 8300000, guid: 04ccebd1958d73b478e8728569641710, type: 3}
   - {fileID: 8300000, guid: 6e61f5e23fbc57144960e34430c5af73, type: 3}
-  audioSourceBGM: {fileID: 0}
-  audioSourcePunch: {fileID: 0}
+  audioSourceBGM: {fileID: 1468499002}
+  audioSourcePunch: {fileID: 1468499003}
   itemGet: {fileID: 8300000, guid: 6dc37231e55893841ba0c47addfee286, type: 3}
 --- !u!82 &1468499002
 AudioSource:
@@ -1556,7 +1556,6 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.049
-  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1890,7 +1889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20589c75da94a7340b27a4f12f6b7d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 0}
   soundManager: {fileID: 1468499001}
   Player: {fileID: 897058802}
   Target: {fileID: 1058915238}
@@ -2247,6 +2245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemState: {fileID: 646688202}
+  soundManager: {fileID: 0}
   itemBase: {fileID: 4275570488992750671, guid: d814ed3d655e7c2429e1d4785b48f311, type: 3}
   positions:
   - {fileID: 1741836195}
