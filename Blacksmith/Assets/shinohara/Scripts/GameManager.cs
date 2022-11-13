@@ -25,13 +25,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI displayText;
     private TextMeshProUGUI gameStateText;
+
+    [SerializeField] GameObject title;
+    [SerializeField] Image count;
+    [SerializeField] Sprite[] threeCounts;
+    [SerializeField] Sprite goSprite;
     
 
     private bool isEnded = true;
     private bool isStartedCountDown = false;
     public bool isStartedTimer = false;
     
-    private float timeLimited = 30;
+    private float timeLimited = 5;
     
     private const float consumeTime = 0.01666f;
 
@@ -47,16 +52,17 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
+        scoreManager.ResetScore();
+        DontDestroyOnLoad(scoreManager);
     }
 
     private void Awake()
     {
-        gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
         scoreManagerObject = GameObject.Find("ScoreManager");
         scoreManager = scoreManagerObject.GetComponent<ScoreManager>();
+        gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
         Target.SetActive(false);
         timeText.text = "";
-        DontDestroyOnLoad(scoreManager);
     }
 
     private void Update()
@@ -98,6 +104,7 @@ public class GameManager : MonoBehaviour
 
     public void OnButtonClickStart()
     {
+        title.SetActive(false);
         _currentState = gameState.InGame;
         isStartedCountDown = true;
     }
@@ -115,16 +122,28 @@ public class GameManager : MonoBehaviour
         timeText.text = "Time: " + timeLimited;
         isStartedCountDown = false;
         displayText.text = "3";
+        soundManager.coundDownPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "2";
+        soundManager.coundDownPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "1";
+        soundManager.coundDownPlay();
         yield return new WaitForSeconds(1.0f);
         displayText.text = "Go";
+        soundManager.startGongPlay();
+        count.gameObject.SetActive(true);
+        count.sprite = threeCounts[0];
         yield return new WaitForSeconds(1.0f);
+        count.sprite = threeCounts[1];
+        yield return new WaitForSeconds(1.0f);
+        count.sprite = threeCounts[2];
+        yield return new WaitForSeconds(1.0f);
+        count.sprite = goSprite;
+        yield return new WaitForSeconds(1.0f);
+        count.gameObject.SetActive(false);
         displayText.text = "";
         isStartedTimer = true;
-        soundManager.startGongPlay();
         soundManager.bgmPlay();
     }
 

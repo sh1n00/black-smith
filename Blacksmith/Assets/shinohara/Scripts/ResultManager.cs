@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,11 +38,14 @@ public class ResultManager : MonoBehaviour
     [SerializeField]
     private Text _enemyNumText;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         scoreManagerObject = GameObject.Find("ScoreManager");
         scoreManager = scoreManagerObject.GetComponent<ScoreManager>();
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
         Debug.Log(scoreManager.Score);
         _enemySpawnPosFirst = _enemySpawnPos.transform.position;
         _num = scoreManager.Score / 100;
