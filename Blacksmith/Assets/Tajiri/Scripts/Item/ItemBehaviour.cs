@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Blacksmith.Item {
     public class ItemBehaviour : MonoBehaviour {
         ItemState itemState;
+        SoundManager soundManager;
         Type myItem;
 
         /// <summary>
@@ -12,14 +13,16 @@ namespace Blacksmith.Item {
         /// </summary>
         /// <param name="stateReference"></param>
         /// <param name="set"></param>
-        public void ItemInit(ItemState stateReference,Type set) {
+        public void ItemInit(ItemState stateReference,SoundManager soundReference,Type set) {
             itemState = stateReference;
+            soundManager = soundReference;
             myItem = set;
             transform.parent = null;
         }
 
         public void ItemTake() {
             itemState.RegisterItem(myItem);
+            soundManager.ItemGetPlay();
             gameObject.SetActive(false);
         }
     }

@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae83b9f13cae52438fadc2d96960ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sandBag: {fileID: 0}
+  lerpMoveToTarget: {fileID: 1058915239}
 --- !u!4 &646688203
 Transform:
   m_ObjectHideFlags: 0
@@ -1528,6 +1528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgm: {fileID: 8300000, guid: b425398c25fe0064da9276ea0e617538, type: 3}
+  bgmVolume: 0.3
   startGong: {fileID: 8300000, guid: 5a1207fff0bf9664b86e9823f09f32e4, type: 3}
   endGong: {fileID: 8300000, guid: 70f7a395f153f264db40330412a3671a, type: 3}
   countDown: {fileID: 8300000, guid: 48adcc736f8521e45a106793fd19125c, type: 3}
@@ -1537,8 +1538,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 22ef9c811e1a40e46bca67ab5e745cce, type: 3}
   - {fileID: 8300000, guid: 1dcb482f6722c304b93d588f5473aef3, type: 3}
   - {fileID: 8300000, guid: b9cf3981c93f89943ad8faa63d53b44e, type: 3}
+  beHitSounds: []
   audioSourceBGM: {fileID: 1468499002}
   audioSourcePunch: {fileID: 1468499003}
+  itemGet: {fileID: 0}
 --- !u!82 &1468499002
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1885,6 +1888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20589c75da94a7340b27a4f12f6b7d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreManager: {fileID: 0}
   soundManager: {fileID: 1468499001}
   Player: {fileID: 897058802}
   Target: {fileID: 1058915238}
@@ -2069,7 +2073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initTimerMin: 1
   initTimerMax: 4
-  multiPosition: 5
+  randomPosition: []
 --- !u!4 &1911608715
 Transform:
   m_ObjectHideFlags: 0
@@ -2204,6 +2208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemState: {fileID: 646688202}
+  soundManager: {fileID: 1468499001}
   itemBase: {fileID: 4275570488992750671, guid: d814ed3d655e7c2429e1d4785b48f311, type: 3}
   positions:
   - {fileID: 1741836195}
