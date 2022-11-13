@@ -181,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203105174}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.7, y: -4, z: 0}
+  m_LocalPosition: {x: -4, y: -2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -924,6 +924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpMoveToTarget: {fileID: 1058915239}
+  stanTime: 3
 --- !u!4 &646688203
 Transform:
   m_ObjectHideFlags: 0
@@ -1118,7 +1119,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858890858}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.7, y: -4, z: 0}
+  m_LocalPosition: {x: 4, y: -2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1284,6 +1285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetObject: {fileID: 1911608713}
   speed: 0.1
+  timerMin: 1
+  timerMax: 4
 --- !u!1 &1067224386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,7 +1477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255281604}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: -2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1538,10 +1541,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 22ef9c811e1a40e46bca67ab5e745cce, type: 3}
   - {fileID: 8300000, guid: 1dcb482f6722c304b93d588f5473aef3, type: 3}
   - {fileID: 8300000, guid: b9cf3981c93f89943ad8faa63d53b44e, type: 3}
-  beHitSounds: []
+  beHitSounds:
+  - {fileID: 8300000, guid: 04ccebd1958d73b478e8728569641710, type: 3}
+  - {fileID: 8300000, guid: 6e61f5e23fbc57144960e34430c5af73, type: 3}
   audioSourceBGM: {fileID: 1468499002}
   audioSourcePunch: {fileID: 1468499003}
-  itemGet: {fileID: 0}
+  itemGet: {fileID: 8300000, guid: 6dc37231e55893841ba0c47addfee286, type: 3}
 --- !u!82 &1468499002
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1888,13 +1893,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20589c75da94a7340b27a4f12f6b7d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreManager: {fileID: 0}
   soundManager: {fileID: 1468499001}
   Player: {fileID: 897058802}
   Target: {fileID: 1058915238}
   gameButton: {fileID: 315238459}
   timeText: {fileID: 539716161}
   displayText: {fileID: 1051883776}
+  isStartedTimer: 0
 --- !u!4 &1783141668
 Transform:
   m_ObjectHideFlags: 0
@@ -2053,7 +2058,7 @@ GameObject:
   - component: {fileID: 1911608715}
   - component: {fileID: 1911608714}
   m_Layer: 0
-  m_Name: RandomMoveObject
+  m_Name: RandomMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2073,7 +2078,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initTimerMin: 1
   initTimerMax: 4
-  randomPosition: []
+  randomPosition:
+  - {fileID: 1741836195}
+  - {fileID: 337024944}
+  - {fileID: 1067224387}
+  - {fileID: 1791890463}
+  - {fileID: 811105763}
+  - {fileID: 247770275}
+  - {fileID: 203105175}
+  - {fileID: 1255281605}
+  - {fileID: 858890859}
 --- !u!4 &1911608715
 Transform:
   m_ObjectHideFlags: 0
@@ -2096,6 +2110,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1058915239, guid: acda1e023946f0f43822bc75782c7210, type: 3}
+      propertyPath: targetObject
+      value: 
+      objectReference: {fileID: 1058915238}
     - target: {fileID: 9105529679501338780, guid: acda1e023946f0f43822bc75782c7210, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2112,6 +2130,10 @@ PrefabInstance:
       propertyPath: scoreManager
       value: 
       objectReference: {fileID: 2140309474}
+    - target: {fileID: 9105529679915201120, guid: acda1e023946f0f43822bc75782c7210, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1468499001}
     - target: {fileID: 9105529679915201121, guid: acda1e023946f0f43822bc75782c7210, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2220,6 +2242,8 @@ MonoBehaviour:
   - {fileID: 203105175}
   - {fileID: 1255281605}
   - {fileID: 858890859}
+  INTERVAL_MIN: 3
+  INTERVAL_MAX: 5
 --- !u!4 &2108082596
 Transform:
   m_ObjectHideFlags: 0
