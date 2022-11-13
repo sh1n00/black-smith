@@ -41,6 +41,9 @@ public class LerpMoveToTarget : MonoBehaviour
         timerMax = randomMoveScript.initTimerMax;
         score = scoreManagerScript.Score;
         isStartes = gameManagerScript.isStartedTimer;
+
+        // 最初は非表示
+        this.gameObject.SetActive(false); 
     }
 
     // Update is called once per frame
@@ -48,6 +51,9 @@ public class LerpMoveToTarget : MonoBehaviour
     {
         if (isStartes)
         {
+            // ゲームスタートで表示
+            this.gameObject.SetActive(true); 
+
             if (!isStan)
             {
                 // 状態遷移
