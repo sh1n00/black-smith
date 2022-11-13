@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     private bool isStartedCountDown = false;
     private bool isStartedTimer = false;
     
-    private float timeLimited = 5;
+    private float timeLimited = 30;
     
     private const float consumeTime = 0.01666f;
 
