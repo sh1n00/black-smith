@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class Target : MonoBehaviour
     private Animator anim;
     
     //スコアマネージャー
-    [SerializeField]
+    private GameObject scoreManagerObject;
     private ScoreManager scoreManager;
 
     //サウンドマネージャー
@@ -46,6 +47,14 @@ public class Target : MonoBehaviour
 
     //フラッグ
     private bool isCanHit = true;
+
+    private void Awake()
+    {
+        scoreManagerObject = GameObject.Find("ScoreManager");
+        scoreManager = scoreManagerObject.GetComponent<ScoreManager>();
+        scoreManager.ResetScore();
+        DontDestroyOnLoad(scoreManager);
+    }
 
     private void Start()
     {
