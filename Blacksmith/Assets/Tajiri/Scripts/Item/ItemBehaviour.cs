@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 namespace Blacksmith.Item {
     public class ItemBehaviour : MonoBehaviour {
         ItemState itemState;
         SoundManager soundManager;
         Type myItem;
+        [SerializeField] Vector3 bigPos;
 
         /// <summary>
         /// アイテムの初期化　ここでスプライトも渡すようにする
@@ -23,7 +24,10 @@ namespace Blacksmith.Item {
         public void ItemTake() {
             itemState.RegisterItem(myItem);
             soundManager.ItemGetPlay();
-            gameObject.SetActive(false);
+            transform.DOScale(bigPos, 0.3f).OnComplete(() => {
+                gameObject.SetActive(false);
+                transform.localScale = Vector3.one;
+            });
         }
     }
 }
