@@ -1527,14 +1527,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgm: {fileID: 8300000, guid: b425398c25fe0064da9276ea0e617538, type: 3}
+  bgmVolume: 0.3
   startGong: {fileID: 8300000, guid: 5a1207fff0bf9664b86e9823f09f32e4, type: 3}
   endGong: {fileID: 8300000, guid: 70f7a395f153f264db40330412a3671a, type: 3}
+  countDown: {fileID: 0}
   punchSounds:
   - {fileID: 8300000, guid: d3aac56e8d4853e47a19014f8e9bb42f, type: 3}
   - {fileID: 8300000, guid: 52f111f9d4235be4e9116a85ff2b02c0, type: 3}
   - {fileID: 8300000, guid: 22ef9c811e1a40e46bca67ab5e745cce, type: 3}
   - {fileID: 8300000, guid: 1dcb482f6722c304b93d588f5473aef3, type: 3}
   - {fileID: 8300000, guid: b9cf3981c93f89943ad8faa63d53b44e, type: 3}
+  beHitSounds:
+  - {fileID: 8300000, guid: 04ccebd1958d73b478e8728569641710, type: 3}
+  - {fileID: 8300000, guid: 6e61f5e23fbc57144960e34430c5af73, type: 3}
+  audioSourceBGM: {fileID: 1468499002}
+  audioSourcePunch: {fileID: 1468499002}
 --- !u!82 &1468499002
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2021,6 +2028,14 @@ PrefabInstance:
       propertyPath: scoreManager
       value: 
       objectReference: {fileID: 2140309474}
+    - target: {fileID: 9105529679915201120, guid: acda1e023946f0f43822bc75782c7210, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1468499001}
+    - target: {fileID: 9105529679915201120, guid: acda1e023946f0f43822bc75782c7210, type: 3}
+      propertyPath: _criticalPrefab
+      value: 
+      objectReference: {fileID: 6577787843965506211, guid: a7629e87c5d0e17449f6d84db50c32b8, type: 3}
     - target: {fileID: 9105529679915201121, guid: acda1e023946f0f43822bc75782c7210, type: 3}
       propertyPath: m_RootOrder
       value: 6

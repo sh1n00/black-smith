@@ -24,28 +24,43 @@ public class PlayerController : MonoBehaviour
     private void MouseLeftClick()
     {
         if(Input.GetMouseButtonDown(0))
-        {
-            RayDetect();
+        {           
+            if(Critical())
+            {
+                RayDetect(true);
+                soundManager.punchPlayOnCritical();
+            }
+            else
+            {
+                RayDetect(false);
+                soundManager.punchPlayOnProb();
+            }
             PunchAnim();
-            soundManager.punchPlayOnProb();
         }
     }
+    //クリティカル
+    private bool Critical()
+    {
+        return UnityEngine.Random.Range(0, 5) == 0;
+    }
+
+
     //レイ
-    private void RayDetect()
+    private void RayDetect(bool critical)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
-            TagCheck(hit, "Sandbag");
+            TagCheck(hit, "Sandbag", critical);
         }
     }
     //レイのタッグをチェック
-    private void TagCheck(RaycastHit hit, string tagName)
+    private void TagCheck(RaycastHit hit, string tagName, bool critical)
     {
         if(hit.transform.tag == tagName)
         {
-            hit.collider.gameObject.GetComponent<Target>().Hit();
+            hit.collider.gameObject.GetComponent<Target>().Hit(critical);
         }
     }
 
