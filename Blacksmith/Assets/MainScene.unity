@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpMoveToTarget: {fileID: 1058915239}
-  stanTime: 0
+  stanTime: 3
 --- !u!4 &646688203
 Transform:
   m_ObjectHideFlags: 0
@@ -2261,8 +2261,8 @@ MonoBehaviour:
   - {fileID: 203105175}
   - {fileID: 1255281605}
   - {fileID: 858890859}
-  INTERVAL_MIN: 0
-  INTERVAL_MAX: 0
+  INTERVAL_MIN: 3
+  INTERVAL_MAX: 5
 --- !u!4 &2108082596
 Transform:
   m_ObjectHideFlags: 0
