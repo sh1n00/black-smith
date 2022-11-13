@@ -19,11 +19,16 @@ public class EnemyScripts : MonoBehaviour
     [SerializeField]
     private GameObject _enemyParticle;
 
+    //ƒTƒEƒ“ƒh
+    [SerializeField] private List<AudioClip> beHitSounds;
+    AudioSource audioSource;
+
     void Start()
     {
         _camera = GameObject.FindWithTag("MainCamera");
         _thisPos = this.transform.position;
         _anim = this.gameObject.GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -40,6 +45,11 @@ public class EnemyScripts : MonoBehaviour
                 _isDie = true;
             }
         }
+    }
+
+    public void SoundPlay()
+    {
+        //audioSource.PlayOneShot(impact, 0.7F);
     }
 
     void Destroy()
