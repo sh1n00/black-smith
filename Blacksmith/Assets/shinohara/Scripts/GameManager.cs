@@ -52,14 +52,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
+        scoreManagerObject = GameObject.Find("ScoreManager");
+        scoreManager = scoreManagerObject.GetComponent<ScoreManager>();
         scoreManager.ResetScore();
         DontDestroyOnLoad(scoreManager);
     }
 
     private void Awake()
     {
-        scoreManagerObject = GameObject.Find("ScoreManager");
-        scoreManager = scoreManagerObject.GetComponent<ScoreManager>();
         gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
         Target.SetActive(false);
         timeText.text = "";
