@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,21 +38,20 @@ public class ResultManager : MonoBehaviour
     [SerializeField]
     private Text _enemyNumText;
 
-    //ƒTƒEƒ“ƒh
-    [SerializeField] private List<AudioClip> resultSounds;
-    AudioSource audioSource;
+    private void Awake()
+    {
+        scoreManagerObject = GameObject.Find("ScoreManager");
+        scoreManager = scoreManagerObject.GetComponent<ScoreManager>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreManagerObject = GameObject.Find("ScoreManager");
-        scoreManager = scoreManagerObject.GetComponent<ScoreManager>();
         Debug.Log(scoreManager.Score);
         _enemySpawnPosFirst = _enemySpawnPos.transform.position;
         _num = scoreManager.Score / 100;
         _enemyNumText.text = _num.ToString();
         _anim = this.gameObject.GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
