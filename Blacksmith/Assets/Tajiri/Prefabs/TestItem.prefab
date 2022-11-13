@@ -154,4 +154,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15b3ec78e721799418200ea670cc5d29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bigPos: {x: 1.2, y: 1.2, z: 1.2}
+  bigPos: {x: 2, y: 2, z: 2}
