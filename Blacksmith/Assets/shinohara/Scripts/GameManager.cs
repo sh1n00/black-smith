@@ -9,22 +9,21 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject gameButton;
 
+    [SerializeField] private SoundManager soundManager;
+    
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject Target;
+    
+    [SerializeField]
+    private GameObject gameButton;
 
     [SerializeField]
     private TextMeshProUGUI timeText;
     [SerializeField]
     private TextMeshProUGUI displayText;
     private TextMeshProUGUI gameStateText;
-
-    [SerializeField]
-    private AudioSource audioSource;
-
-    [SerializeField] private AudioClip bgm;
+    
 
     private bool isEnded = true;
     private bool isStartedCountDown = false;
@@ -46,7 +45,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void Awake()
@@ -102,6 +100,7 @@ public class GameManager : MonoBehaviour
     IEnumerator waitCorutine(float waitSecond)
     {
         isEnded = false;
+        soundManager.endGongPlay();
         yield return new WaitForSeconds(waitSecond);
         _currentState = gameState.Result;
     }
@@ -120,7 +119,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         displayText.text = "";
         isStartedTimer = true;
-        audioSource.PlayOneShot(bgm);
+        soundManager.startGongPlay();
+        soundManager.bgmPlay();
     }
 
 }
