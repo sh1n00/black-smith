@@ -4,18 +4,18 @@ using UnityEngine;
 namespace Blacksmith.Item {
     public class ItemState : MonoBehaviour {
         //List<Type> activeItems = new List<Type>();
-        [SerializeField] SandBag sandBag;
+        [SerializeField] LerpMoveToTarget lerpMoveToTarget;
         public void RegisterItem(Type register) {
             switch (register) {
                 case Type.STAN:
-                    sandBag.ItemEffect(Type.STAN, true);
+                    lerpMoveToTarget.ItemEffect(Type.STAN, true);
                     ItemEffectRemove(Type.STAN);
                     break;
             }
         }
 
         void ItemEffectRemove(Type type) {
-            sandBag.ItemEffect(type, false);
+            lerpMoveToTarget.ItemEffect(type, false);
         }
     }
 }
