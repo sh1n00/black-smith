@@ -35,9 +35,22 @@ public class Target : MonoBehaviour
     private Color normalColor;
     [SerializeField]
     private Color hitColor;
+    [SerializeField]
+    private Color criticalColor;
+
+    //`スプライト
+    [SerializeField]
+    private SpriteRenderer _spriteRenderer;
+    [SerializeField]
+    private Sprite[] _sprite;
 
     //フラッグ
     private bool isCanHit = true;
+
+    private void Start()
+    {
+        SpriteChange(_sprite[0]);
+    }
 
     private void FixedUpdate()
     {
@@ -48,6 +61,7 @@ public class Target : MonoBehaviour
             {
                 ChangeIsCanhit(true);
                 ColorChange(normalColor);
+                SpriteChange(_sprite[0]);
                 _timerTmp = 0;
             }
         }
@@ -57,21 +71,23 @@ public class Target : MonoBehaviour
     {
         if(isCanHit)
         {
-            ChangeIsCanhit(false);
-            ColorChange(hitColor);
-            
+            ChangeIsCanhit(false);            
             BeHitAnim();
             //クリティカル確定
             if(critical)
             {
+                ColorChange(criticalColor);
                 soundManager.beHitPlayOnProb(1);
                 scoreManager.ScorePlus(_score*2);
+                SpriteChange(_sprite[2]);
                 CriticalParticle();
             }
             else　//通常攻撃
             {
+                ColorChange(hitColor);
                 soundManager.beHitPlayOnProb(0);
                 scoreManager.ScorePlus(_score);
+                SpriteChange(_sprite[1]);
                 HitParticle();
             }      
         }
@@ -100,5 +116,11 @@ public class Target : MonoBehaviour
     private void CriticalParticle()
     {
         Instantiate(_criticalPrefab, transform.position, Quaternion.identity);
+    }
+
+    //スプライト変換
+    private void SpriteChange(Sprite texture)
+    {
+        _spriteRenderer.sprite = texture;
     }
 }
