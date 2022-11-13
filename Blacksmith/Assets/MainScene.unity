@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae83b9f13cae52438fadc2d96960ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sandBag: {fileID: 0}
+  lerpMoveToTarget: {fileID: 0}
 --- !u!4 &646688203
 Transform:
   m_ObjectHideFlags: 0
@@ -1999,7 +1999,11 @@ PrefabInstance:
     - target: {fileID: 9105529679591898843, guid: acda1e023946f0f43822bc75782c7210, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: fef31b53d48f5904aa033a022675c550, type: 3}
+      objectReference: {fileID: 21300000, guid: 45fdb3adfc2cf9344ad67fd6e875d961, type: 3}
+    - target: {fileID: 9105529679591898843, guid: acda1e023946f0f43822bc75782c7210, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9105529679591898845, guid: acda1e023946f0f43822bc75782c7210, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2063,6 +2067,22 @@ PrefabInstance:
     - target: {fileID: 9105529679915201121, guid: acda1e023946f0f43822bc75782c7210, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105529679915201124, guid: acda1e023946f0f43822bc75782c7210, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6464696
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105529679915201124, guid: acda1e023946f0f43822bc75782c7210, type: 3}
+      propertyPath: m_Size.y
+      value: 3.420611
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105529679915201124, guid: acda1e023946f0f43822bc75782c7210, type: 3}
+      propertyPath: m_Center.x
+      value: -0.011341572
+      objectReference: {fileID: 0}
+    - target: {fileID: 9105529679915201124, guid: acda1e023946f0f43822bc75782c7210, type: 3}
+      propertyPath: m_Center.y
+      value: -0.059135854
       objectReference: {fileID: 0}
     - target: {fileID: 9105529679915201125, guid: acda1e023946f0f43822bc75782c7210, type: 3}
       propertyPath: m_Name
