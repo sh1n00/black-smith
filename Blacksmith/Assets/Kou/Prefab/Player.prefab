@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2509320149447557426}
   - component: {fileID: 2509320149447557427}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2509320149522850674}
   - component: {fileID: 2509320149522850675}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Punch_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2509320149522850677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.109, z: -0.017}
+  m_LocalPosition: {x: -0.5, y: 0.109, z: 0}
   m_LocalScale: {x: -1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2509320150193385685}
   - component: {fileID: 2509320150193385682}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2509320150450296043}
   - component: {fileID: 2509320150450296040}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -429,7 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2509320150828874241}
   - component: {fileID: 2509320150828874302}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ Transform:
   m_GameObject: {fileID: 2509320150828874244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.26, y: 0, z: -2}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1, y: 1, z: 0.026415547}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2509320149447557426}
@@ -476,7 +476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2509320151235124006}
   - component: {fileID: 2509320151235124007}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Punch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2509320151235124009}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.109, z: -0.017}
+  m_LocalPosition: {x: 0.5, y: 0.109, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9105529679501338779}
   - component: {fileID: 9105529679501338778}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9105529679591898844}
   - component: {fileID: 9105529679591898843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b0675d6ebc05404fb0fad04d1fe8b03, type: 2}
+  - {fileID: 2100000, guid: ac2c5a923b0d8084bba4d90f65041542, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,8 +125,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 45fdb3adfc2cf9344ad67fd6e875d961, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,7 +150,8 @@ GameObject:
   - component: {fileID: 9105529679915201123}
   - component: {fileID: 9105529679915201124}
   - component: {fileID: 9105529679915201120}
-  m_Layer: 0
+  - component: {fileID: 1058915239}
+  m_Layer: 6
   m_Name: Target
   m_TagString: Sandbag
   m_Icon: {fileID: 0}
@@ -201,7 +202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b0675d6ebc05404fb0fad04d1fe8b03, type: 2}
+  - {fileID: 2100000, guid: ac2c5a923b0d8084bba4d90f65041542, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -234,8 +235,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.6464696, y: 3.420611, z: 1}
+  m_Center: {x: -0.011341572, y: -0.059135854, z: 0}
 --- !u!114 &9105529679915201120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,9 +251,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 9105529679501338778}
   scoreManager: {fileID: 0}
+  soundManager: {fileID: 0}
   _timer: 0.3
   _score: 100
   _particlePrefab: {fileID: 2881336907209054368, guid: 6971067e0727ebe46ac7e85f3d6b0656, type: 3}
+  _criticalPrefab: {fileID: 6577787843965506211, guid: a7629e87c5d0e17449f6d84db50c32b8, type: 3}
   sprite: {fileID: 9105529679591898843}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
+  criticalColor: {r: 0.4339623, g: 0, b: 0, a: 1}
+  _spriteRenderer: {fileID: 9105529679591898843}
+  _sprite:
+  - {fileID: 21300000, guid: 45fdb3adfc2cf9344ad67fd6e875d961, type: 3}
+  - {fileID: 21300000, guid: 647f356a85c75bd41a32cc2c04b4f5ae, type: 3}
+  - {fileID: 21300000, guid: 539304a8904f5c040adbd43172c8592e, type: 3}
+--- !u!114 &1058915239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9105529679915201125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5287ed5d7bb27941948d22885acad2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 0}
+  speed: 1
