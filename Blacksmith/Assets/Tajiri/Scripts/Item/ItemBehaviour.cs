@@ -25,8 +25,8 @@ namespace Blacksmith.Item {
             itemState.RegisterItem(myItem);
             soundManager.ItemGetPlay();
             transform.DOScale(bigPos, 0.3f).OnComplete(() => {
-                gameObject.SetActive(false);
                 transform.localScale = Vector3.one;
+                gameObject.SetActive(false);
             });
         }
     }
