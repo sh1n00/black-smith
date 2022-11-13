@@ -11,19 +11,8 @@ public class PlayerController : MonoBehaviour
     private bool punchFlag = true;
 
     [SerializeField]
-    private AudioClip punch1;
-    [SerializeField]
-    private AudioClip punch2;
-
+    private SoundManager soundManager;
     
-    [SerializeField]
-    private AudioSource audioSource;
-
-    private void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
-
     void Update()
     {
         MouseLeftClick();
@@ -37,7 +26,7 @@ public class PlayerController : MonoBehaviour
         {
             RayDetect();
             PunchAnim();
-            audioSource.PlayOneShot(punch1);
+            soundManager.punchPlay(1);
         }
     }
     //ƒŒƒC
