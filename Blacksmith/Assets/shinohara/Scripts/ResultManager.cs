@@ -26,6 +26,11 @@ public class ResultManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemySandbag;
 
+
+    //Particle
+    [SerializeField]
+    private GameObject _enemyParticle;
+
     [SerializeField]
     private Text _enemyNumText;
 

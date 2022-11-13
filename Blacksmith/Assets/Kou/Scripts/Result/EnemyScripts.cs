@@ -15,6 +15,10 @@ public class EnemyScripts : MonoBehaviour
     private Vector3 _thisPos;
     private bool _isDie = false;
 
+    //Particle
+    [SerializeField]
+    private GameObject _enemyParticle;
+
     void Start()
     {
         _camera = GameObject.FindWithTag("MainCamera");
@@ -29,6 +33,7 @@ public class EnemyScripts : MonoBehaviour
         {
             if(_thisPos.x <= _cameraPos.x)
             {
+                Instantiate(_enemyParticle, transform.position, Quaternion.identity);
                 int num = Random.Range(1, 6);
                 _anim.SetInteger("SmashType",num);
                 Invoke("Destroy", 0.8f);
