@@ -46,12 +46,15 @@ public class LerpMoveToTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isStan || !isStartes)
+        if (isStartes)
         {
-            // ó‘Ô‘JˆÚ
-            StateManage(score);
-            // ˆÚ“®
-            transform.position = Vector2.MoveTowards(transform.position, targetObject.transform.position, speed);
+            if (!isStan)
+            {
+                // ó‘Ô‘JˆÚ
+                StateManage(score);
+                // ˆÚ“®
+                transform.position = Vector2.MoveTowards(transform.position, targetObject.transform.position, speed);
+            }
         }
     }
 
