@@ -6,37 +6,56 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
+
 public class GameManager : MonoBehaviour
 {
-    
+    private GameObject rootCanvas;
     [SerializeField]
     private GameObject gameButton;
 
+    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject Target;
+
     private TextMeshProUGUI gameStateText;
+    [SerializeField]
+    private TextMeshProUGUI timeText;
+
+    [SerializeField] private TextMeshProUGUI displayText;
 
     private float time = 5;
     private bool endFlag = true;
+    private bool startFlag = false;
+    
+    private const float consumeTime = 0.01666f;
     
     private enum gameState
     {
         Title,
         InGame,
-        Result
+        Result,
     }
 
-    private gameState _currentState = gameState.Title;
+    private static gameState _currentState = gameState.Title;
 
     private void Start()
     {
-        gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
         Application.targetFrameRate = 60;
+    }
+
+    private void Awake()
+    {
+        gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
+        Target.SetActive(false);
+        timeText.text = "";
     }
 
     private void Update()
     {
-        time -= 0.03666f;
-        Debug.Log(time);
+        if (startFlag)
+        {
+            time -= consumeTime;
+            timeText.text = "Time: " + (int)time;
+        }
     }
 
     private void LateUpdate()
@@ -44,19 +63,27 @@ public class GameManager : MonoBehaviour
         switch (_currentState)
         {
             case gameState.Title:
+                gameButton.SetActive(true);
                 gameStateText.text = "Start";
+                displayText.text = "";
                 break;
             case gameState.InGame:
+                Target.SetActive(true);
                 gameButton.SetActive(false);
+                // if(!startFlag) StartCoroutine(countDown());
+                startFlag = true;
                 if (time <= 0)
                 {
-                    Debug.Log(endFlag);
+                    displayText.text = "Finish";
+                    Player.SetActive(false);
+                    Target.SetActive(false);
                     if(endFlag) StartCoroutine(waitCorutine(1f));
                     endFlag = false;
                 }
                 break;
             case gameState.Result:
                 SceneManager.LoadScene("Result");
+                _currentState = gameState.Title;
                 break;
         }
     }
@@ -66,17 +93,24 @@ public class GameManager : MonoBehaviour
         _currentState = gameState.InGame;
     }
     
-    public void OnButtonClickTitle()
-    {
-        _currentState = gameState.Title;
-    }
 
     IEnumerator waitCorutine(float waitSecond)
     {
-        gameButton.SetActive(true);
-        gameStateText.text = "GameOver";
         yield return new WaitForSeconds(waitSecond);
         _currentState = gameState.Result;
     }
-    
+
+    IEnumerator countDown()
+    {
+        displayText.text = "3";
+        yield return new WaitForSeconds(1.0f);
+        displayText.text = "2";
+        yield return new WaitForSeconds(1.0f);
+        displayText.text = "1";
+        yield return new WaitForSeconds(1.0f);
+        displayText.text = "Go";
+        yield return new WaitForSeconds(1.0f);
+        displayText.text = "";
+    }
+
 }

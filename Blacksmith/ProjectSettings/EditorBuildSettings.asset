@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/shinohara/Scene/MainScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/MainScene.unity
+    guid: bfe1c9be42028324ca0e65c27b1737b9
   - enabled: 1
-    path: Assets/shinohara/Scene/Result.unity
-    guid: 5e2cc4bd2e853af4a97ad7165e035894
+    path: Assets/Result.unity
+    guid: c8c930b1232c09b4eb603a7b87dc04bc
   m_configObjects: {}

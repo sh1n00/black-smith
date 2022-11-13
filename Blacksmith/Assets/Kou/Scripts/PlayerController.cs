@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,20 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
 
     private bool punchFlag = true;
+
+    [SerializeField]
+    private AudioClip punch1;
+    [SerializeField]
+    private AudioClip punch2;
+
+    
+    [SerializeField]
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -22,6 +37,7 @@ public class PlayerController : MonoBehaviour
         {
             RayDetect();
             PunchAnim();
+            audioSource.PlayOneShot(punch1);
         }
     }
     //ƒŒƒC
