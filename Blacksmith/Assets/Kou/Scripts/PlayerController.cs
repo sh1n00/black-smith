@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         MouseLeftClick();
         CursorObjectMovement();
-        audioSource.PlayOneShot(punch1);
     }
 
     //マウスクリック
@@ -38,6 +37,7 @@ public class PlayerController : MonoBehaviour
         {
             RayDetect();
             PunchAnim();
+            audioSource.PlayOneShot(punch1);
         }
     }
     //レイ
