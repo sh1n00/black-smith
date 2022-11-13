@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private bool isStartedCountDown = false;
     private bool isStartedTimer = false;
     
+    [SerializeField]
     private float timeLimited = 5;
     
     private const float consumeTime = 0.01666f;
