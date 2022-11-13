@@ -7,6 +7,7 @@ public class Target : MonoBehaviour
     //アニメ
     [SerializeField]
     private Animator anim;
+    
     //スコアマネージャー
     [SerializeField]
     private ScoreManager scoreManager;
@@ -73,7 +74,7 @@ public class Target : MonoBehaviour
         scoreManager.Score += num;
         Debug.Log(scoreManager.Score);
     }
-    //beHit演出
+    //beHit演出w
     public void BeHitAnim()
     {
         anim.SetTrigger("beHit");

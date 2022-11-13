@@ -10,18 +10,29 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    private GameObject _rootCanvas;
-
-    private GameObject rootCanvas;
+    [SerializeField] private SoundManager soundManager;
+    
+    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject Target;
+    
+    [SerializeField]
     private GameObject gameButton;
 
-    private TextMeshProUGUI gameStateText;
     [SerializeField]
     private TextMeshProUGUI timeText;
-
-    private float time = 5;
-    private bool endFlag = false;
+    [SerializeField]
+    private TextMeshProUGUI displayText;
+    private TextMeshProUGUI gameStateText;
     
+
+    private bool isEnded = true;
+    private bool isStartedCountDown = false;
+    private bool isStartedTimer = false;
+    
+    private float timeLimited = 5;
+    
+    private const float consumeTime = 0.01666f;
+
     private enum gameState
     {
         Title,
@@ -38,17 +49,17 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        rootCanvas = GameObject.Find("Canvas");
-        gameButton = rootCanvas.transform.GetChild(0).gameObject;
         gameStateText = gameButton.GetComponentInChildren<TextMeshProUGUI>();
+        Target.SetActive(false);
+        timeText.text = "";
     }
 
     private void Update()
     {
-        if (endFlag)
+        if (isStartedTimer)
         {
-            time -= 0.03666f;
-            timeText.text = "Time: " + (int)time;
+            timeLimited -= consumeTime;
+            timeText.text = "Time: " + (int)timeLimited;
         }
     }
 
@@ -57,17 +68,20 @@ public class GameManager : MonoBehaviour
         switch (_currentState)
         {
             case gameState.Title:
+                gameButton.SetActive(true);
                 gameStateText.text = "Start";
+                displayText.text = "";
                 break;
             case gameState.InGame:
-                endFlag = true;
+                Target.SetActive(true);
                 gameButton.SetActive(false);
-                if (time <= 0)
+                if(isStartedCountDown) StartCoroutine(countDown());
+                if (timeLimited <= 0)
                 {
-                    gameButton.SetActive(true);
-                    gameStateText.text = "Finish";
-                    if(endFlag) StartCoroutine(waitCorutine(1f));
-                    endFlag = false;
+                    displayText.text = "Finish";
+                    Player.SetActive(false);
+                    Target.SetActive(false);
+                    if(isEnded) StartCoroutine(waitCorutine(1f));
                 }
                 break;
             case gameState.Result:
@@ -80,13 +94,33 @@ public class GameManager : MonoBehaviour
     public void OnButtonClickStart()
     {
         _currentState = gameState.InGame;
+        isStartedCountDown = true;
     }
-    
 
     IEnumerator waitCorutine(float waitSecond)
     {
+        isEnded = false;
+        soundManager.endGongPlay();
         yield return new WaitForSeconds(waitSecond);
         _currentState = gameState.Result;
     }
-    
+
+    IEnumerator countDown()
+    {
+        timeText.text = "Time: " + timeLimited;
+        isStartedCountDown = false;
+        displayText.text = "3";
+        yield return new WaitForSeconds(1.0f);
+        displayText.text = "2";
+        yield return new WaitForSeconds(1.0f);
+        displayText.text = "1";
+        yield return new WaitForSeconds(1.0f);
+        displayText.text = "Go";
+        yield return new WaitForSeconds(1.0f);
+        displayText.text = "";
+        isStartedTimer = true;
+        soundManager.startGongPlay();
+        soundManager.bgmPlay();
+    }
+
 }
