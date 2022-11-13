@@ -6,6 +6,7 @@ using Random = System.Random;
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioClip bgm;
+    [SerializeField] private float bgmVolume = 0.3f;
 
     [SerializeField] private AudioClip startGong;
 
@@ -15,6 +16,8 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] private List<AudioClip> punchSounds;
 
+    [SerializeField] private List<AudioClip> beHitSounds;
+
     [SerializeField]
     private AudioSource audioSourceBGM;
 
@@ -23,7 +26,7 @@ public class SoundManager : MonoBehaviour
     
     public void bgmPlay()
     {
-        audioSourceBGM.PlayOneShot(bgm);
+        audioSourceBGM.PlayOneShot(bgm, bgmVolume);
     }
 
     public void startGongPlay()
@@ -46,6 +49,11 @@ public class SoundManager : MonoBehaviour
         audioSourcePunch.PlayOneShot(punchSounds[punchIndex]);
     }
 
+    public void beHitPlay(int punchIndex)
+    {
+        audioSourcePunch.PlayOneShot(beHitSounds[punchIndex]);
+    }
+
     public int getLength()
     {
         return punchSounds.Count;
@@ -53,14 +61,19 @@ public class SoundManager : MonoBehaviour
 
     public void punchPlayOnProb()
     {
-        int prob = UnityEngine.Random.Range(0, 30);
-        if (prob == 0)
-        {
-            audioSourcePunch.volume = 0.7f;
-            punchPlay(3);
-        }
-        else punchPlay(0);
+        int prob = UnityEngine.Random.Range(0, 2);
+        punchPlay(prob);
+    }
 
+    public void punchPlayOnCritical()
+    {
+        int prob = UnityEngine.Random.Range(2, 5);
+        punchPlay(prob);
+    }
+
+    public void beHitPlayOnProb(int num)
+    {
+        beHitPlay(num);
     }
 
     public void stopAudioFade(float decreaseRate)

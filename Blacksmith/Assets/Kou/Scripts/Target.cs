@@ -12,6 +12,10 @@ public class Target : MonoBehaviour
     [SerializeField]
     private ScoreManager scoreManager;
 
+    //サウンドマネージャー
+    [SerializeField]
+    private SoundManager soundManager;
+
     [SerializeField]
     private float _timer = 0.5f;
     private float _timerTmp = 0.0f;
@@ -21,6 +25,8 @@ public class Target : MonoBehaviour
     //パーティークル
     [SerializeField]
     private GameObject _particlePrefab;
+    [SerializeField]
+    private GameObject _criticalPrefab;
 
     //色変え
     [SerializeField]
@@ -47,15 +53,27 @@ public class Target : MonoBehaviour
         }
     }
 
-    public void Hit()
+    public void Hit(bool critical)
     {
         if(isCanHit)
         {
             ChangeIsCanhit(false);
             ColorChange(hitColor);
-            scoreManager.ScorePlus(_score);
+            
             BeHitAnim();
-            HitParticle();
+            //クリティカル確定
+            if(critical)
+            {
+                soundManager.beHitPlayOnProb(1);
+                scoreManager.ScorePlus(_score*2);
+                CriticalParticle();
+            }
+            else　//通常攻撃
+            {
+                soundManager.beHitPlayOnProb(0);
+                scoreManager.ScorePlus(_score);
+                HitParticle();
+            }      
         }
     }
 
@@ -78,5 +96,9 @@ public class Target : MonoBehaviour
     private void HitParticle()
     {
         Instantiate(_particlePrefab, transform.position, Quaternion.identity);
+    }
+    private void CriticalParticle()
+    {
+        Instantiate(_criticalPrefab, transform.position, Quaternion.identity);
     }
 }
