@@ -79,12 +79,12 @@ public class GameManager : MonoBehaviour
         switch (_currentState)
         {
             case gameState.Title:
+                Target.SetActive(false);
                 gameButton.SetActive(true);
                 gameStateText.text = "Start";
                 displayText.text = "";
                 break;
             case gameState.InGame:
-                Target.SetActive(true);
                 gameButton.SetActive(false);
                 if(isStartedCountDown) StartCoroutine(countDown());
                 if (timeLimited <= 0)
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
                     displayText.text = "Finish";
                     Player.SetActive(false);
                     Target.SetActive(false);
-                    if(isEnded) StartCoroutine(waitCorutine(1f));
+                    if(isEnded) StartCoroutine(waitCorutine(2f));
                 }
                 break;
             case gameState.Result:
@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour
         count.gameObject.SetActive(false);
         displayText.text = "";
         isStartedTimer = true;
+        Target.SetActive(true);
         soundManager.bgmPlay();
     }
 
